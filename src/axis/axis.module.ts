@@ -4,6 +4,6 @@ import { AxisController } from './axis.controller';
 
 @Module({
   providers: [AxisService],
-  controllers: [AxisController]
+  controllers: [AxisController],
 })
 export class AxisModule {}
