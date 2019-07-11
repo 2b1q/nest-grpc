@@ -23,6 +23,7 @@
     "@grpc/proto-loader": "^0.5.1",
     "@nestjs/common": "^6.0.0",
     "@nestjs/core": "^6.0.0",
+    "@nestjs/microservices": "^6.5.2",
     "@nestjs/platform-express": "^6.0.0",
     "grpc": "^1.22.2",
     "reflect-metadata": "^0.1.12",
