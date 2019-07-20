@@ -4,7 +4,7 @@ const protoLoader = require('@grpc/proto-loader');
 //Load the protobuf
 const proto = grpc.loadPackageDefinition(
   protoLoader.loadSync('./src/axis/axis.proto', {
-    keepCase: true,
+    keepCase: false,
     longs: String,
     enums: String,
     defaults: true,
@@ -21,9 +21,16 @@ const client = new proto.axis.AxisService(
 );
 
 client.FindOne({ id: 'uuid-3' }, (error, axis) => {
-  if (!error) {
-    console.log('successfully fetch Axis:', axis);
-  } else {
-    console.error(error);
-  }
+  if (!error) return console.log('successfully fetch Axis:', axis);
+  console.error(error);
+});
+
+client.List({}, (error, axises) => {
+  if (!error) return console.log('successfully fetch Axis List:', axises);
+  console.error(error);
+});
+
+client.Insert({ id: 'uuid_', a1: 1, a2: 4 }, (err, axises) => {
+  if (err) return console.error('client insert failed:', err);
+  console.log('sucess insertion:', axises);
 });

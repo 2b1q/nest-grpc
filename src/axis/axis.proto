@@ -4,11 +4,11 @@ package axis;
 
 service AxisService {
     // retrive one axis by Id
-    rpc FindOne (AxisById) returns (Axis) {}
+    rpc FindOne (AxisById) returns (Axis){};
     // retrive all axisess
-    rpc List (Empty) returns (AxisList) {}
+    rpc List (Empty) returns (AxisList){};
     // insert one axis return AxisList
-    rpc Insert (Axis) returns (AxisList) {}
+    rpc Insert (Axis) returns (AxisList){};
 }
 
 // message contract for Empty args \0/
@@ -29,13 +29,14 @@ message Axis {
     int32 a7 = 8; // if axis not exist pass 0
 }
 
-message AxisList {
-    // Repeated means that the field is a type of List or an Array.
-    repeated Axis axises = 1;
-}
 
-message Vehicle {
-    int32 id = 1;
-    string type = 2;
-    int32 axises = 3;
+// message Vehicle {
+//     int32 id = 1;
+//     string type = 2;
+//     int32 axises = 3;
+// }
+
+// Repeated means that the field is a type of List or an Array.
+message AxisList {
+    repeated Axis axises = 1; 
 }
