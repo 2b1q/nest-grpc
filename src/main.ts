@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { grpcClientOptions, grpcVehicleOptions } from './grpc.client';
 
+// TODO wrap into docker-composer
 async function bootstrap() {
   /**
    * Hybrid App1 (HTTP + GRPC)

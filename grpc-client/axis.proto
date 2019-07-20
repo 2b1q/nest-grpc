@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package axis;
+
+service AxisService {
+    // retrive one axis by Id
+    rpc FindOne (AxisById) returns (Axis){};
+    // retrive all axisess
+    rpc List (Empty) returns (AxisList){};
+    // insert one axis return AxisList
+    rpc Insert (Axis) returns (AxisList){};
+}
+
+// message contract for Empty args \0/
+message Empty {}
+
+message AxisById {
+    string id = 1; // uuid
+}
+
+message Axis {
+    string id = 1; // uuid
+    int32 a1 = 2; // first axis
+    int32 a2 = 3; // second axis
+    int32 a3 = 4; // if axis not exist pass 0
+    int32 a4 = 5; // if axis not exist pass 0
+    int32 a5 = 6; // if axis not exist pass 0
+    int32 a6 = 7; // if axis not exist pass 0
+    int32 a7 = 8; // if axis not exist pass 0
+}
+
+
+// message Vehicle {
+//     int32 id = 1;
+//     string type = 2;
+//     int32 axises = 3;
+// }
+
+// Repeated means that the field is a type of List or an Array.
+message AxisList {
+    repeated Axis axises = 1; 
+}

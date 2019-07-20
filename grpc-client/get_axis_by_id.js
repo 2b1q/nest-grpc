@@ -3,7 +3,7 @@ const protoLoader = require('@grpc/proto-loader');
 
 //Load the protobuf
 const proto = grpc.loadPackageDefinition(
-  protoLoader.loadSync('./src/axis/axis.proto', {
+  protoLoader.loadSync('./axis.proto', {
     keepCase: false,
     longs: String,
     enums: String,
@@ -12,7 +12,7 @@ const proto = grpc.loadPackageDefinition(
   }),
 );
 
-const REMOTE_SERVER = 'localhost:5000';
+const REMOTE_SERVER = 'grpc-service:5000';
 
 //Create gRPC client for axis package and AxisService
 const client = new proto.axis.AxisService(
