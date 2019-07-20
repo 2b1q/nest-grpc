@@ -14,6 +14,18 @@ services:
         links:
             - grpc_mongo:mongo
 
+    grpc-client:
+        build: 
+            context: ./grpc-client
+        command: node get_axis_by_id.js
+        restart: always
+        depends_on: 
+            - grpc_service
+        networks: 
+            - grpc-net
+        links: 
+            - grpc_service:grpc-service
+
     grpc_mongo:
         image: mongo:latest
         container_name: grpc_mongo
