@@ -9,3 +9,15 @@ export const grpcClientOptions: ClientOptions = {
     protoPath: join(__dirname, './axis/axis.proto'),
   },
 };
+
+export const grpcVehicleOptions: ClientOptions = {
+  transport: Transport.GRPC,
+  options: {
+    url: 'localhost:5001',
+    package: 'vehicle',
+    protoPath: join(
+      __dirname,
+      './vehicle-exploitation/vehicle.exploitation.proto',
+    ),
+  },
+};
