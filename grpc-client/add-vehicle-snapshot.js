@@ -91,8 +91,13 @@ const client = new proto.vehicle.VehicleExploitationService(
   grpc.credentials.createInsecure(), // TODO - use AUTH
 );
 
-// TODO add fake generated data
+// TODO returns vehicleID (use vehicleID to add snapshot)
 client.addVehicle(vehicle, (error, result) => {
   if (error) return console.error(error);
   console.log('successfully addVehicle:', result);
+  // add snapshot
+  client.addSnapshot(snapshot, (error, result) => {
+    if (error) return console.error(error);
+    console.log('successfully addSnapshot:', result);
+  });
 });
