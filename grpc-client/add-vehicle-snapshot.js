@@ -59,9 +59,31 @@ const vehicle = {
     license: faker.random.alphaNumeric(4) + '-' + faker.random.alphaNumeric(6),
   },
 };
-
 // console.log('vehicle', vehicle);
-const snapshot = {};
+
+// define vehicle and cargo
+const snapshotData = [];
+snapshotData.length = vehicle.axisesAmount;
+snapshotData.fill('a', 0);
+const totalWeight = faker.random.number({ min: 7000, max: 10000 });
+const cargoWeight = faker.random.number({ min: 300, max: totalWeight });
+
+const snapshot = {
+  id: faker.random.number({ min: 0, max: 10000 }),
+  timestamp: new Date(),
+  totalWeight,
+  cargoWeight,
+  data: snapshotData.map((axis, index) => {
+    let lifted = faker.random.boolean();
+    return Object({
+      weight: lifted ? 0 : Math.floor(cargoWeight / 3),
+      lifted,
+      axisId: index + 1,
+    });
+  }),
+};
+
+// console.log(snapshot);
 
 //Create gRPC client for vehicle package and VehicleExploitationService
 const client = new proto.vehicle.VehicleExploitationService(
