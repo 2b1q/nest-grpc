@@ -23,6 +23,9 @@
   "homepage": "https://github.com/2b1q/nest-grpc#readme",
   "dependencies": {
     "@grpc/proto-loader": "^0.5.1",
-    "grpc": "^1.22.2"
+    "faker": "^4.1.0",
+    "grpc": "^1.22.2",
+    "random-birthday": "^1.0.1",
+    "vin-generator": "^1.0.1"
   }
 }
