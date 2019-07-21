@@ -1,5 +1,6 @@
 version: "3"
 services:
+    # gRPC Server/service
     grpc_service:
         build:
             context: .
@@ -19,11 +20,12 @@ services:
             - "5000:5000"
             - "3000:3000"
 
+    # gRPC client (send fake data to gRPC service)
     grpc_client:
         build: 
             context: ./grpc-client
-        # command: node add-vehicle-snapshot.js
-        command: ping grpc_service
+        command: node add-vehicle-snapshot.js
+        # command: ping grpc_service
         container_name: grpc_client
         restart: always
         depends_on: 
@@ -31,7 +33,7 @@ services:
         networks: 
             - grpc-net
         links: 
-            - grpc_service
+            - grpc_service # link by service name
 
     grpc_mongo:
         image: mongo:latest
