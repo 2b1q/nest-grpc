@@ -12,7 +12,7 @@ const proto = grpc.loadPackageDefinition(
   }),
 );
 
-const REMOTE_SERVER = 'grpc-service:5000';
+const REMOTE_SERVER = 'localhost:5000';
 
 //Create gRPC client for axis package and AxisService
 const client = new proto.axis.AxisService(

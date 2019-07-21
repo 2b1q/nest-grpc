@@ -12,7 +12,7 @@ const proto = grpc.loadPackageDefinition(
   }),
 );
 
-const REMOTE_SERVER = 'grpc-service:5001';
+const REMOTE_SERVER = 'grpc_service:5001';
 
 //Create gRPC client for vehicle package and VehicleExploitationService
 const client = new proto.vehicle.VehicleExploitationService(

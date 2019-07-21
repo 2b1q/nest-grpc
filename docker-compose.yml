@@ -4,6 +4,7 @@ services:
         build:
             context: .
         command: npm start
+        container_name: grpc_service
         restart: always
         depends_on:
             - grpc_mongo
@@ -13,18 +14,24 @@ services:
             - grpc-net
         links:
             - grpc_mongo:mongo
+        ports: 
+            - "5001:5001"
+            - "5000:5000"
+            - "3000:3000"
 
-    grpc-client:
+    grpc_client:
         build: 
             context: ./grpc-client
-        command: node get_axis_by_id.js
+        # command: node add-vehicle-snapshot.js
+        command: ping grpc_service
+        container_name: grpc_client
         restart: always
         depends_on: 
             - grpc_service
         networks: 
             - grpc-net
         links: 
-            - grpc_service:grpc-service
+            - grpc_service
 
     grpc_mongo:
         image: mongo:latest
