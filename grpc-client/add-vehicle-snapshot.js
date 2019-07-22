@@ -95,6 +95,9 @@ const client = new proto.vehicle.VehicleExploitationService(
 client.addVehicle(vehicle, (error, result) => {
   if (error) return console.error(error);
   console.log('successfully addVehicle:', result);
+  const { id } = result;
+  snapshot.vehicleId = id;
+  console.log(snapshot);
   // add snapshot
   client.addSnapshot(snapshot, (error, result) => {
     if (error) return console.error(error);
