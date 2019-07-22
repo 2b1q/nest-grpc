@@ -11,6 +11,7 @@ services:
             - grpc_mongo
         environment:
             - NODE_ENV=dev
+            - URI='mongodb://mongo/snapshots'
         networks:
             - grpc-net
         links:
