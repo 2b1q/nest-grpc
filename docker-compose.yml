@@ -1,40 +1,40 @@
 version: "3"
 services:
     # gRPC Server/service
-    # grpc_service:
-    #     build:
-    #         context: .
-    #     command: npm start
-    #     container_name: grpc_service
-    #     restart: always
-    #     depends_on:
-    #         - grpc_mongo
-    #     environment:
-    #         - NODE_ENV=dev
-    #         - URI='mongodb://mongo/snapshots'
-    #     networks:
-    #         - grpc-net
-    #     links:
-    #         - grpc_mongo:mongo
-    #     ports: 
-    #         - "5001:5001"
-    #         - "5000:5000"
-    #         - "3000:3000"
+    grpc_service:
+        build:
+            context: .
+        command: npm start
+        container_name: grpc_service
+        restart: always
+        depends_on:
+            - grpc_mongo
+        environment:
+            - NODE_ENV=dev
+            - URI=mongodb://mongo/snapshots
+        networks:
+            - grpcnet
+        links:
+            - grpc_mongo:mongo
+        ports: 
+            - "5001:5001"
+            - "5000:5000"
+            - "3000:3000"
 
     # gRPC client (send fake data to gRPC service)
-    # grpc_client:
-    #     build: 
-    #         context: ./grpc-client
-    #     command: node add-vehicle-snapshot.js
-    #     # command: ping grpc_service
-    #     container_name: grpc_client
-    #     restart: always
-    #     depends_on: 
-    #         - grpc_service
-    #     networks: 
-    #         - grpc-net
-    #     links: 
-    #         - grpc_service # link by service name
+    grpc_client:
+        build: 
+            context: ./grpc-client
+        command: node add-vehicle-snapshot.js
+        # command: ping grpc_service
+        container_name: grpc_client
+        restart: always
+        depends_on: 
+            - grpc_service
+        networks: 
+            - grpcnet
+        links: 
+            - grpc_service # link by service name
 
     grpc_mongo:
         image: mongo:latest
@@ -43,7 +43,7 @@ services:
         volumes:
             - db-data:/data/db
         networks:
-            - grpc-net
+            - grpcnet
         ports:
             - "27017:27017"
         # environment:
@@ -60,7 +60,7 @@ services:
         links:
             - grpc_mongo:mongo
         networks:
-            - grpc-net
+            - grpcnet
         restart: always
         ports:
             - "8081:8081"
@@ -69,7 +69,7 @@ services:
         #     ME_CONFIG_MONGODB_ADMINPASSWORD: toor
 
 networks:
-    grpc-net:
+    grpcnet:
 
 volumes:
     db-data:
